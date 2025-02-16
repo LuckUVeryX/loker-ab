@@ -3,7 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:loker_airbridge/providers/cdd_app_links_provider.dart';
+import 'package:loker_airbridge/providers/emp_app_links_provider.dart';
 import 'package:loker_airbridge/utils/utils.dart';
+import 'package:loker_airbridge/widgets/molecules/app_links_dialog.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class RootBody extends HookConsumerWidget {
@@ -13,8 +16,8 @@ class RootBody extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final path = GoRouterState.of(context).uri.path;
     final url = switch (path) {
-      '/prod' => 'https://loker.glints.com/',
-      _ => 'https://loker.staging.glints.com/',
+      '/prod' => 'https://loker.glints.com',
+      _ => 'https://loker.staging.glints.com',
     };
     final controller = useTextEditingController(text: url);
 
@@ -74,6 +77,35 @@ class RootBody extends HookConsumerWidget {
                 }
                 await launchUrl(uri);
               },
+            ),
+          ],
+        ),
+        const SizedBox(height: 16),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextButton(
+              onPressed: () async {
+                final path = await AppLinksDialog.show(
+                  context,
+                  links: ref.read(empAppLinksProvider),
+                );
+                if (path == null) return;
+                controller.text = url + path;
+              },
+              child: const Text('Emp App Links'),
+            ),
+            const SizedBox(width: 16),
+            TextButton(
+              onPressed: () async {
+                final path = await AppLinksDialog.show(
+                  context,
+                  links: ref.read(cddAppLinksProvider),
+                );
+                if (path == null) return;
+                controller.text = url + path;
+              },
+              child: const Text('Cdd App Links'),
             ),
           ],
         ),
