@@ -3,10 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:loker_airbridge/controllers/controllers.dart';
 import 'package:loker_airbridge/providers/cdd_app_links_provider.dart';
 import 'package:loker_airbridge/providers/emp_app_links_provider.dart';
 import 'package:loker_airbridge/utils/utils.dart';
-import 'package:loker_airbridge/widgets/molecules/app_links_dialog.dart';
+import 'package:loker_airbridge/widgets/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class RootBody extends HookConsumerWidget {
@@ -55,6 +56,9 @@ class RootBody extends HookConsumerWidget {
                       behavior: SnackBarBehavior.floating,
                     ),
                   );
+
+                final notifier = ref.read(historyControllerProvider.notifier);
+                return notifier.add(controller.text);
               },
             ),
             const SizedBox(width: 16),
@@ -76,6 +80,9 @@ class RootBody extends HookConsumerWidget {
                   return;
                 }
                 await launchUrl(uri);
+
+                final notifier = ref.read(historyControllerProvider.notifier);
+                return notifier.add(controller.text);
               },
             ),
           ],
@@ -108,6 +115,15 @@ class RootBody extends HookConsumerWidget {
               child: const Text('Cdd App Links'),
             ),
           ],
+        ),
+        const SizedBox(height: 16),
+        TextButton(
+          onPressed: () async {
+            final path = await HistoryDialog.show(context);
+            if (path == null) return;
+            controller.text = path;
+          },
+          child: const Text('History'),
         ),
       ],
     );

@@ -28,9 +28,7 @@ class RootPage extends HookConsumerWidget {
             child: body,
           ),
         ),
-        bottomNavigationBar: const BottomAppBar(
-          child: Center(child: Text('Loker Airbridge | Laiyan')),
-        ),
+        bottomNavigationBar: const RootBottomAppBar(),
       ),
     );
   }
@@ -61,4 +59,15 @@ class RootAppBar extends HookConsumerWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+}
+
+class RootBottomAppBar extends StatelessWidget {
+  const RootBottomAppBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const BottomAppBar(
+      child: Center(child: Text('Loker Airbridge | Laiyan')),
+    );
+  }
 }
