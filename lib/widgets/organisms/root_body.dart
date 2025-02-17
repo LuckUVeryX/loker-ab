@@ -8,6 +8,7 @@ import 'package:loker_airbridge/providers/cdd_app_links_provider.dart';
 import 'package:loker_airbridge/providers/emp_app_links_provider.dart';
 import 'package:loker_airbridge/utils/utils.dart';
 import 'package:loker_airbridge/widgets/widgets.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class RootBody extends HookConsumerWidget {
@@ -28,6 +29,12 @@ class RootBody extends HookConsumerWidget {
       children: [
         Text('✏️ Airbridge Link', style: context.textTheme.titleLarge),
         const SizedBox(height: 16),
+        QrImageView(
+          data: controller.text,
+          backgroundColor: Colors.white,
+          size: 80,
+        ),
+        const SizedBox(height: 16),
         TextField(
           controller: controller,
           decoration: InputDecoration(
@@ -38,6 +45,7 @@ class RootBody extends HookConsumerWidget {
           ),
         ),
         const SizedBox(height: 16),
+
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
