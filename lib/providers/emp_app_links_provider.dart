@@ -9,7 +9,7 @@ List<AirbridgeLink> empAppLinks(Ref ref) {
   return [
     const AirbridgeLink(
       channel: 'employer_share',
-      path: '/share-emp?jobId=job_id',
+      path: '/share-emp?job_id=job_id',
     ),
     const AirbridgeLink(
       channel: 'employer_email',
