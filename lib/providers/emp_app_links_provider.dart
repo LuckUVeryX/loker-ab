@@ -8,12 +8,20 @@ part 'emp_app_links_provider.g.dart';
 List<AirbridgeLink> empAppLinks(Ref ref) {
   return [
     const AirbridgeLink(
+      channel: 'employer_email',
+      path: '/employers-forgot-password?id=id&token=token',
+    ),
+    const AirbridgeLink(
+      channel: 'employer_email',
+      path: '/employers-manage-candidates?job_id=job_id',
+    ),
+    const AirbridgeLink(
       channel: 'employer_share',
       path: '/share-emp?job_id=job_id',
     ),
     const AirbridgeLink(
       channel: 'employer_email',
-      path: '/employers-onboarding',
+      path: '/employers-onboarding?id=id&token=token&ref_code=ref_code',
     ),
     const AirbridgeLink(
       channel: 'employer_email',

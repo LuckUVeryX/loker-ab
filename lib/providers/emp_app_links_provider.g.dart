@@ -6,7 +6,7 @@ part of 'emp_app_links_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$empAppLinksHash() => r'bf45fc11fc8f12ec8f4f8c9c14bbb54dc9f7256c';
+String _$empAppLinksHash() => r'91ed1d56214ccd1eec64ef1c83091733aab97d5f';
 
 /// See also [empAppLinks].
 @ProviderFor(empAppLinks)
