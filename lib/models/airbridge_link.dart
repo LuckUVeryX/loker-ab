@@ -4,7 +4,7 @@ part 'airbridge_link.freezed.dart';
 part 'airbridge_link.g.dart';
 
 @freezed
-class AirbridgeLink with _$AirbridgeLink {
+abstract class AirbridgeLink with _$AirbridgeLink {
   const factory AirbridgeLink({required String channel, required String path}) =
       _AirbridgeLink;
 
